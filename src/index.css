@@ -1,0 +1,145 @@
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #202124;
+  background: #f6f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+::selection {
+  background: #c2e7ff;
+  color: #001d35;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c5c9d3 transparent;
+}
+
+.dark * {
+  scrollbar-color: #555b66 transparent;
+}
+
+.email-content {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  line-height: 1.75;
+}
+
+.toolbar-btn {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #5f6368;
+  background: transparent;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.toolbar-btn:hover {
+  background: #f0f2f5;
+  color: #202124;
+}
+
+.dark .toolbar-btn {
+  color: #bdc1c6;
+}
+
+.dark .toolbar-btn:hover {
+  background: #303134;
+  color: #ffffff;
+}
+
+.animate-enter {
+  animation: enter 180ms ease-out both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mailora: force-hide the mobile menu on desktop */
+@media screen and (min-width: 1024px) {
+  .mailora-navbar button[aria-label="Open navigation menu"],
+  .mailora-navbar .mailora-mobile-menu {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Force-hide desktop utility icons on mobile */
+@media screen and (max-width: 639px) {
+  .mailora-navbar button[aria-label="Switch to light theme"],
+  .mailora-navbar button[aria-label="Switch to dark theme"],
+  .mailora-navbar button[aria-label="Notifications"],
+  .mailora-navbar button[aria-label="Help and support"] {
+    display: none !important;
+  }
+
+  .mailora-navbar > .mailora-mobile-menu {
+    display: grid !important;
+  }
+}
